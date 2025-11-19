@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { Resource } from "@prisma/client";
 import { redirect } from "next/navigation";
-import { NextResponse } from "next/server";
 import React from "react";
 
 const SectionDetailsPage = async ({
@@ -13,7 +12,7 @@ const SectionDetailsPage = async ({
 }) => {
   const { userId } = await auth();
 
-  if (!userId) return new NextResponse("Unauthorized", { status: 401 });
+  if (!userId) return redirect("/sign-in");
 
   const { courseId, sectionId } = await params;
 
@@ -82,16 +81,14 @@ const SectionDetailsPage = async ({
   });
 
   return (
-    <div>
-      <SectionDetails
-        course={course}
-        purchase={purchase}
-        section={section}
-        muxData={muxData}
-        resources={resources}
-        progress={progress}
-      />
-    </div>
+    <SectionDetails
+      course={course}
+      purchase={purchase}
+      section={section}
+      muxData={muxData}
+      resources={resources}
+      progress={progress}
+    />
   );
 };
 
