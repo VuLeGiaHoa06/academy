@@ -21,11 +21,7 @@ const CreateCoursePage = async () => {
     })),
   }));
 
-  return (
-    <div className="flex flex-col gap-4 p-7 w-full">
-      <CreateCourseForm categories={updateCategories} />
-    </div>
-  );
+  return <CreateCourseForm categories={updateCategories} />;
 };
 
 export default CreateCoursePage;

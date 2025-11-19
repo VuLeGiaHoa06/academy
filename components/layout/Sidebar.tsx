@@ -8,7 +8,7 @@ const SideBar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="shadow-lg h-screen p-6 group">
+    <div className="shadow-lg p-6 group ">
       {sidebarRoutes.map((route) => (
         <Link
           key={route.path}

@@ -17,16 +17,19 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { ComboBox } from "../custom";
 import toast from "react-hot-toast";
+import Link from "next/link";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   title: z.string().min(2, {
-    message: "Title is required and minimum 2 characters",
+    error: "Title is required and minimum 2 characters",
   }),
   categoryId: z.string().min(1, {
-    message: "Category is required",
+    error: "Category is required",
   }),
   subCategoryId: z.string().min(1, {
-    message: "Subcategory is required",
+    error: "Subcategory is required",
   }),
 });
 
@@ -53,11 +56,12 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
     },
   });
 
-  // console.log(form);
+  const { isValid, isSubmitting } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const res = await axios.post("/api/courses", values);
+
       router.push(`/instructor/courses/${res.data.id}/basic`);
       toast.success("Create a course successful 😁");
     } catch (error) {
@@ -66,7 +70,7 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
   };
 
   return (
-    <div className="w-full">
+    <div>
       <h1 className="text-xl font-bold">
         Let give some basics for your course
       </h1>
@@ -84,7 +88,9 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>
+                  Title <span className="text-red-500">*</span>
+                </FormLabel>
                 <FormControl>
                   <Input
                     className="w-full"
@@ -103,7 +109,9 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
               // console.log(field);
               return (
                 <FormItem className="flex flex-col gap-2">
-                  <FormLabel>Catergory</FormLabel>
+                  <FormLabel>
+                    Catergory <span className="text-red-500">*</span>
+                  </FormLabel>
                   <FormControl>
                     <ComboBox options={categories} {...field} />
                   </FormControl>
@@ -119,7 +127,9 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
               // console.log(form.watch("title"));
               return (
                 <FormItem className="flex flex-col gap-2">
-                  <FormLabel>Subcatergory</FormLabel>
+                  <FormLabel>
+                    Subcatergory <span className="text-red-500">*</span>
+                  </FormLabel>
                   <FormControl>
                     <ComboBox
                       options={
@@ -137,14 +147,18 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
             }}
           />
           <div className="flex gap-4">
-            <Button
-              type="button"
-              onClick={() => router.push("/instructor/courses")}
-              className="bg-white border-2 border-[#FDAB04]"
-            >
-              Cancel
+            <Link href="/instructor/courses">
+              <Button type="button" variant="outline">
+                Cancel
+              </Button>
+            </Link>
+            <Button type="submit" disabled={!isValid || isSubmitting}>
+              {isSubmitting ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <p>Create</p>
+              )}
             </Button>
-            <Button type="submit">Create</Button>
           </div>
         </form>
       </Form>
