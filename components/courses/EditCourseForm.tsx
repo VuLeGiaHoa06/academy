@@ -290,7 +290,11 @@ const EditCourseForm = ({
                 </Button>
               </Link>
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                {isSubmitting ? <Loader2 size={16} /> : <p>Update</p>}
+                {isSubmitting ? (
+                  <Loader2 className="h-4 w-4 animate-spin" size={16} />
+                ) : (
+                  <p>Update</p>
+                )}
               </Button>
             </div>
           </form>

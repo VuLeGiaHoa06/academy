@@ -7,9 +7,13 @@ import Link from "next/link";
 import React from "react";
 
 const CourseCard = async ({ course }: { course: Course }) => {
-  const instructor = await (
-    await clerkClient()
-  ).users.getUser(course.instructorId);
+  let instructor;
+
+  if (!course.instructorId) {
+    instructor = null;
+  } else {
+    instructor = await (await clerkClient()).users.getUser(course.instructorId);
+  }
 
   let level;
 
@@ -39,8 +43,8 @@ const CourseCard = async ({ course }: { course: Course }) => {
           <div className="flex gap-2 items-center">
             <Image
               src={
-                instructor.imageUrl
-                  ? instructor.imageUrl
+                instructor?.imageUrl
+                  ? instructor?.imageUrl
                   : "/avatar_placeholder.jpg"
               }
               alt="avatar"
@@ -48,7 +52,7 @@ const CourseCard = async ({ course }: { course: Course }) => {
               height={30}
               className="rounded-full w-[30px] h-[30px]"
             />
-            <p className="text-sm font-semibold">{instructor.username}</p>
+            <p className="text-sm font-semibold">{instructor?.username}</p>
           </div>
           {level && (
             <p className="font-semibold flex items-center gap-2">

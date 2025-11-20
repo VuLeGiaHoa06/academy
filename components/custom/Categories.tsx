@@ -1,9 +1,8 @@
 "use client";
 
 import { Category } from "@prisma/client";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface CategoriesProps {
