@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ToasterProvider from "@/components/providers/ToasterProvider";
+import FooterSection from "@/components/FooterSection";
+import { Topbar } from "@/components/layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tech Vision Academy",
+  title: "BinVu's Academy",
   description: "Empowering minds, shaping future",
 };
 
@@ -30,7 +32,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <Topbar />
           {children}
+          <FooterSection />
           <ToasterProvider />
         </body>
       </html>

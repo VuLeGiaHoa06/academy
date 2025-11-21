@@ -98,19 +98,24 @@ const SectionDetails = ({
 
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold">Resources</h1>
-        <div className="flex flex-col gap-2">
-          {resources.map((resource) => (
-            <Link
-              href={resource.fileUrl}
-              key={resource.id}
-              target="_blank"
-              className="flex gap-2 bg-[#FFF8EB] rounded-lg text-sm p-3 items-center hover:text-[#FDAB04]/90"
-            >
-              <File className="h-4 w-4" />
-              <p>{resource.name}</p>
-            </Link>
-          ))}
-        </div>
+
+        {resources.length === 0 ? (
+          <p>Dont have any resources in this course</p>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {resources.map((resource) => (
+              <Link
+                href={resource.fileUrl}
+                key={resource.id}
+                target="_blank"
+                className="flex gap-2 bg-[#FFF8EB] rounded-lg text-sm p-3 items-center hover:text-[#FDAB04]/90"
+              >
+                <File className="h-4 w-4" />
+                <p>{resource.name}</p>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

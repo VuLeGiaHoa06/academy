@@ -30,9 +30,15 @@ const CategoryDetails = async ({
     <div className="px-[60px] py-[40px]">
       <Categories categories={categories} selectedCategory={categoryId} />
       <div className="mt-[40px] flex flex-wrap gap-6">
-        {courses.map((course) => (
-          <CourseCard key={course.id} course={course} />
-        ))}
+        {courses.length === 0 ? (
+          <p>Dont have any courses by this categories</p>
+        ) : (
+          <>
+            {courses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

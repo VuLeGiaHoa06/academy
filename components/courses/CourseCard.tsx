@@ -1,12 +1,16 @@
 import { db } from "@/lib/db";
 import { clerkClient } from "@clerk/nextjs/server";
-import { Course } from "@prisma/client";
+import { Category, Course } from "@prisma/client";
 import { Gem } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const CourseCard = async ({ course }: { course: Course }) => {
+interface CourseCardProps {
+  course: Course;
+}
+
+const CourseCard = async ({ course }: CourseCardProps) => {
   let instructor;
 
   if (!course.instructorId) {
@@ -37,7 +41,7 @@ const CourseCard = async ({ course }: { course: Course }) => {
         height={150}
         className="w-[300px] h-[180px]"
       />
-      <div className="px-4 py-2 flex flex-col gap-2">
+      <div className="px-4 py-2 flex flex-col gap-6">
         <p className="text-xl font-bold">{course.title}</p>
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
@@ -62,7 +66,7 @@ const CourseCard = async ({ course }: { course: Course }) => {
           )}
         </div>
         <p className="font-semibold">
-          {course.price ? `$ ${course.price}` : ""}
+          {course.price ? `$${course.price}` : ""}
         </p>
       </div>
     </Link>

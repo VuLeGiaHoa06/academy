@@ -35,9 +35,9 @@ const Topbar = () => {
   };
 
   return (
-    <div className=" w-full flex items-center justify-between px-8 py-4 shadow-sm">
+    <div className=" w-full flex items-center justify-between px-[60px] py-4 shadow-sm">
       <Link href={"/"}>
-        <Image src={logo} alt="logo" height={100} width={200} />
+        <p className="text-[28px] font-bold">BinVu's Academy</p>
       </Link>
       <div className="flex items-center w-[400px] max-md:w-[250px] rounded-full overflow-hidden">
         <input

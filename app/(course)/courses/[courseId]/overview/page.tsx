@@ -20,7 +20,7 @@ const OverviewPage = async ({
   const course = await db.course.findUnique({
     where: {
       id: courseId,
-      instructorId: userId,
+      instructorId: userId as string, // tin tao no la mot string
     },
     include: {
       sections: {

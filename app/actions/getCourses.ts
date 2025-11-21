@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { Course } from "@prisma/client";
+import { Category, Course } from "@prisma/client";
 
 // catergoryId === null => '/' - homepage
 // catergoryId === id => '/:id' - subcaterogy

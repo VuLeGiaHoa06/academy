@@ -2,11 +2,11 @@ import { ChartBarBig, MonitorPlay } from "lucide-react";
 
 export const topRoutes = [
   {
-    path: "/instructor",
+    path: "/instructor/courses",
     label: "Instructor",
   },
   {
-    path: "learning",
+    path: "/instructor/learning",
     label: "Learning",
   },
 ];

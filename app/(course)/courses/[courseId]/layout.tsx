@@ -38,9 +38,8 @@ const CourseDetailsLayout = async ({
   if (!course) return redirect("/");
 
   return (
-    <div className="flex flex-col gap-4">
-      <Topbar />
-      <div className="flex h-screen">
+    <div>
+      <div className="flex">
         <CourseSidebar course={course} studentId={userId} />
         <div className="flex-1 p-7">{children}</div>
       </div>
