@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import banner from "@/public/banner.jpg";
+import banner from "@/public/banner.webp";
 
 export default function HeroSection() {
   return (
@@ -36,8 +36,14 @@ export default function HeroSection() {
           </div>
 
           {/* Right Visual */}
-          <div className="relative border border-red-500">
-            <h1>Image</h1>
+          <div className="justify-self-end">
+            <Image
+              src={banner}
+              alt="banner"
+              height={500}
+              width={500}
+              className="rounded-3xl"
+            />
           </div>
         </div>
       </div>

@@ -1,23 +1,14 @@
 "use client";
 
 import { useAuth, UserButton } from "@clerk/nextjs";
-import Image from "next/image";
-import logo from "@/public/logo.png";
 import { CircleUserRound, Menu, Search } from "lucide-react";
 import Link from "next/link";
 import { topRoutes } from "@/lib/constant";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Topbar = () => {
   const router = useRouter();
@@ -25,6 +16,7 @@ const Topbar = () => {
 
   const { isSignedIn } = useAuth();
   const [searchInput, setSearchInput] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = () => {
     if (searchInput.trim() !== "") {
@@ -34,8 +26,18 @@ const Topbar = () => {
     setSearchInput("");
   };
 
+  const handleScroll = () => {
+    if (!containerRef.current) return;
+
+    console.log(containerRef.current.scrollHeight);
+  };
+
   return (
-    <div className=" w-full flex items-center justify-between px-[60px] py-4 shadow-sm">
+    <div
+      ref={containerRef}
+      onScroll={handleScroll}
+      className="sticky top-0 bg-white w-full flex items-center justify-between px-[60px] py-4 shadow-sm border-b border-gray-100"
+    >
       <Link href={"/"}>
         <p className="text-[28px] font-bold">BinVu's Academy</p>
       </Link>

@@ -41,7 +41,7 @@ const CourseCard = async ({ course }: CourseCardProps) => {
         height={150}
         className="w-[300px] h-[180px]"
       />
-      <div className="px-4 py-2 flex flex-col gap-6">
+      <div className="px-4 py-2 flex flex-col gap-3">
         <p className="text-xl font-bold">{course.title}</p>
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">

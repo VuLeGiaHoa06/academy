@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
-import { Course, Section } from "@prisma/client";
+import { Course, Purchase, Section } from "@prisma/client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 
 interface CourseSidebarProps {
@@ -45,11 +45,11 @@ const CourseSidebar = async ({ course, studentId }: CourseSidebarProps) => {
     (completedSections.length / publishedSections.length) * 100;
 
   return (
-    <div className="hidden md:flex flex-col w-64 border-r shadow-md px-3 my-2 text-sm font-medium">
+    <div className="hidden md:flex flex-col w-64 border-r shadow-md px-3 py-5 my-2 text-sm font-medium">
       <h1 className="text-lg font-bold mb-4 text-center">{course?.title}</h1>
 
       {purchase && (
-        <div>
+        <div className="px-[12px]">
           <Progress value={progressPercentage} className="h-2" />
           <p>{progressPercentage}% completed</p>
         </div>
