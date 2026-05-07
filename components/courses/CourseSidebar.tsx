@@ -1,8 +1,8 @@
 import { db } from "@/lib/db";
 import { Course, Purchase, Section } from "@prisma/client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import Link from "next/link";clear
 import { Progress } from "@/components/ui/progress";
+import { clear } from "console";
 
 interface CourseSidebarProps {
   course: Course & { sections: Section[] };

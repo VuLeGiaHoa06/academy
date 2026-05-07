@@ -1,3 +1,5 @@
+@import "@uploadthing/react/styles.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -115,5 +117,3 @@ body,
 .cl-formButtonPrimary:hover {
   background-color: rgba(253, 171, 4, 0.8);
 }
-
-@import "@uploadthing/react/styles.css";
